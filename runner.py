@@ -4,6 +4,7 @@ Author: Scoder12"""
 import time
 import math
 from typing import Any
+import pathlib
 
 def format_filename(day):
     # You can customize this to your liking.
@@ -55,7 +56,8 @@ def run_part(part: str, mod: Any, data: str):
 
 def get_data(day):
     # Try to find the filename
-    fname = format_filename(day) + ".txt"
+
+    fname = str(pathlib.Path(__file__).parent.absolute()) + "/" + format_filename(day) + ".txt"
     try:
         with open(fname, "r") as f:
             data = f.read()
