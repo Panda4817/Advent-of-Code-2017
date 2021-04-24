@@ -6,6 +6,7 @@ import math
 from typing import Any
 import pathlib
 
+
 def format_filename(day):
     # You can customize this to your liking.
     return str(day).zfill(2)
@@ -25,11 +26,11 @@ def format_runtime(ms):
     sec = ms / 1000
     # Seconds
     if sec < 60:
-      whole_sec = math.floor(sec)
-      rem_ms = ms - whole_sec * 1000
-      return f'{whole_sec}s ' + format_runtime(rem_ms)
+        whole_sec = math.floor(sec)
+        rem_ms = ms - whole_sec * 1000
+        return f'{whole_sec}s ' + format_runtime(rem_ms)
     # Minutes (hopefully it doesn't get to this point lol)
-    return f"{math.floor(sec / 60)}m " + format_runtime((sec % 60)* 1000)
+    return f"{math.floor(sec / 60)}m " + format_runtime((sec % 60) * 1000)
 
 
 def run_part(part: str, mod: Any, data: str):
@@ -44,20 +45,19 @@ def run_part(part: str, mod: Any, data: str):
         end = time.perf_counter()
 
         print(f"Output: {val}")
-        rtime = (end - start) * 1000 # sec -> ms
+        rtime = (end - start) * 1000  # sec -> ms
         print(f"Took {format_runtime(rtime)}\n")
         return rtime
     else:
         print(f"No {funcname} function")
         return 0
 
-    return rtime
-
 
 def get_data(day):
     # Try to find the filename
 
-    fname = str(pathlib.Path(__file__).parent.absolute()) + "/" + format_filename(day) + ".txt"
+    fname = str(pathlib.Path(__file__).parent.absolute()) + \
+        "/" + format_filename(day) + ".txt"
     try:
         with open(fname, "r") as f:
             data = f.read()
